@@ -1,0 +1,26 @@
+{
+    "name": "zahzah/module-funding",
+    "autoload": {
+        "psr-4": {
+            "Zahzah\\ModuleFunding\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hamzah",
+            "email": "hamzahnuralfalah@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zahzah\\ModuleFunding\\ModuleFundingServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "zahzah/laravel-support": "2.x"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
