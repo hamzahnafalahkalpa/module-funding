@@ -1,10 +1,11 @@
 <?php
 
-namespace Zahzah\ModuleFunding\Supports;
+namespace Hanafalah\ModuleFunding\Supports;
 
-use Zahzah\LaravelSupport\Supports\PackageManagement;
+use Hanafalah\LaravelSupport\Supports\PackageManagement;
 
-class BaseModuleFunding extends PackageManagement{
+class BaseModuleFunding extends PackageManagement
+{
     /** @var array */
     protected $__module_funding_config = [];
 
@@ -15,7 +16,8 @@ class BaseModuleFunding extends PackageManagement{
      * @throws Exception description of exception
      * @return void
      */
-    public function __construct(){
-        $this->setConfig('module-funding',$this->__module_funding_config);
-    }    
-}   
+    public function __construct()
+    {
+        $this->setConfig('module-funding', $this->__module_funding_config);
+    }
+}

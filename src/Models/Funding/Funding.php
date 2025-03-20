@@ -1,27 +1,31 @@
 <?php
 
-namespace Zahzah\ModuleFunding\Models\Funding;
+namespace Hanafalah\ModuleFunding\Models\Funding;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Zahzah\LaravelHasProps\Concerns\HasProps;
-use Zahzah\LaravelSupport\Models\BaseModel;
-use Zahzah\ModuleFunding\Resources\Funding\{
-    ViewFunding, ShowFunding
+use Hanafalah\LaravelHasProps\Concerns\HasProps;
+use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\ModuleFunding\Resources\Funding\{
+    ViewFunding,
+    ShowFunding
 };
 
-class Funding extends BaseModel{
+class Funding extends BaseModel
+{
     use HasProps, SoftDeletes;
 
-    public $list = ['id','name','props'];
+    public $list = ['id', 'name', 'props'];
     protected $casts = [
         'name' => 'string'
     ];
 
-    public function toViewApi(){
+    public function toViewApi()
+    {
         return new ViewFunding($this);
     }
 
-    public function toShowApi(){
+    public function toShowApi()
+    {
         return new ShowFunding($this);
     }
 }

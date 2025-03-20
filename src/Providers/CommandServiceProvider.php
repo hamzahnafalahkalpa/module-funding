@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Zahzah\ModuleFunding\Providers;
+namespace Hanafalah\ModuleFunding\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Zahzah\ModuleFunding\Commands;
+use Hanafalah\ModuleFunding\Commands;
 
 class CommandServiceProvider extends ServiceProvider
 {
@@ -14,8 +14,9 @@ class CommandServiceProvider extends ServiceProvider
     ];
 
 
-    public function register(){
-        $this->commands(config('module-funding.commands',$this->commands));
+    public function register()
+    {
+        $this->commands(config('module-funding.commands', $this->commands));
     }
     /**
      * Get the services provided by the provider.

@@ -1,10 +1,7 @@
 <?php
 
-namespace Zahzah\ModuleFunding\Contracts;
+namespace Hanafalah\ModuleFunding\Contracts;
 
-use Zahzah\LaravelSupport\Contracts\DataManagement;
+use Hanafalah\LaravelSupport\Contracts\DataManagement;
 
-interface ModuleFunding extends DataManagement
-{
-
-}
+interface ModuleFunding extends DataManagement {}

@@ -1,8 +1,8 @@
 {
-    "name": "zahzah/module-funding",
+    "name": "hanafalah/module-funding",
     "autoload": {
         "psr-4": {
-            "Zahzah\\ModuleFunding\\": "src/"
+            "Hanafalah\\ModuleFunding\\": "src/"
         }
     },
     "authors": [
@@ -14,12 +14,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Zahzah\\ModuleFunding\\ModuleFundingServiceProvider"
+                "Hanafalah\\ModuleFunding\\ModuleFundingServiceProvider"
             ]
         }
     },
     "require": {
-        "zahzah/laravel-support": "2.x"
+        "hanafalah/laravel-support": "2.x"
     },
     "minimum-stability": "dev",
     "prefer-stable": false

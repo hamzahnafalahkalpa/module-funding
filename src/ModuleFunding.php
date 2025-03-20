@@ -1,10 +1,8 @@
 <?php
 
-namespace Zahzah\ModuleFunding;
+namespace Hanafalah\ModuleFunding;
 
-use Zahzah\ModuleFunding\Contracts\ModuleFunding as ContractsModuleFunding;
-use Zahzah\ModuleFunding\Supports\BaseModuleFunding;
+use Hanafalah\ModuleFunding\Contracts\ModuleFunding as ContractsModuleFunding;
+use Hanafalah\ModuleFunding\Supports\BaseModuleFunding;
 
-class ModuleFunding extends BaseModuleFunding implements ContractsModuleFunding{
-    
-}
+class ModuleFunding extends BaseModuleFunding implements ContractsModuleFunding {}

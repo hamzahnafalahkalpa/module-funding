@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Zahzah\ModuleFunding;
+namespace Hanafalah\ModuleFunding;
 
-use Zahzah\LaravelSupport\Providers\BaseServiceProvider;
-use Zahzah\ModuleFunding\Schemas\Funding;
+use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
+use Hanafalah\ModuleFunding\Schemas\Funding;
 
 class ModuleFundingServiceProvider extends BaseServiceProvider
 {
@@ -17,9 +17,10 @@ class ModuleFundingServiceProvider extends BaseServiceProvider
     public function register()
     {
         $this->registerMainClass(ModuleFunding::class)
-             ->registerCommandService(Providers\CommandServiceProvider::class)
-             ->registers([
-                '*','Services' => function(){
+            ->registerCommandService(Providers\CommandServiceProvider::class)
+            ->registers([
+                '*',
+                'Services' => function () {
                     $this->binds([
                         Contracts\ModuleFunding::class => new ModuleFunding,
                         Contracts\Funding::class => new Funding
@@ -33,11 +34,13 @@ class ModuleFundingServiceProvider extends BaseServiceProvider
      *
      * @return string
      */
-    protected function dir(): string{
-        return __DIR__.'/';
+    protected function dir(): string
+    {
+        return __DIR__ . '/';
     }
 
-    protected function migrationPath(string $path = ''): string{
+    protected function migrationPath(string $path = ''): string
+    {
         return database_path($path);
     }
 }

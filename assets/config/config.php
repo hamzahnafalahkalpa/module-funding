@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-use Zahzah\ModuleFunding\{
+use Hanafalah\ModuleFunding\{
     Models as ModuleFundingModels,
     Commands as ModuleFundingCommands,
     Contracts

@@ -1,12 +1,13 @@
 <?php
 
-namespace Zahzah\ModuleFunding\Data;
+namespace Hanafalah\ModuleFunding\Data;
 
-use Zahzah\LaravelSupport\Supports\Data;
+use Hanafalah\LaravelSupport\Supports\Data;
 
-class FundingDTO extends Data{
+class FundingDTO extends Data
+{
     public function __construct(
         public mixed $id = null,
         public string $name
-    ){}
+    ) {}
 }
