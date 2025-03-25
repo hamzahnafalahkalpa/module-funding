@@ -7,12 +7,18 @@ use Hanafalah\ModuleFunding\{
 };
 
 return [
-    'contracts' => [
-        'funding'        => Contracts\Funding::class,
-        'module_funding' => Contracts\ModuleFunding::class,
+    'app' => [
+        'contracts' => [
+            'funding'        => Contracts\Funding::class,
+            'module_funding' => Contracts\ModuleFunding::class,
+        ],
     ],
     'commands'  => [
         ModuleFundingCommands\InstallMakeCommand::class
+    ],
+    'libs' => [
+        'model' => 'Models',
+        'contract' => 'Contracts'
     ],
     'database' => [
         'models' => [
