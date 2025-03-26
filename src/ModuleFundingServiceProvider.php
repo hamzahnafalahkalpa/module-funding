@@ -22,8 +22,7 @@ class ModuleFundingServiceProvider extends BaseServiceProvider
                 '*',
                 'Services' => function () {
                     $this->binds([
-                        Contracts\ModuleFunding::class => new ModuleFunding,
-                        Contracts\Funding::class => new Funding
+                        Contracts\ModuleFunding::class => ModuleFunding::class
                     ]);
                 }
             ]);

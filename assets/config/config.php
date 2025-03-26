@@ -9,8 +9,6 @@ use Hanafalah\ModuleFunding\{
 return [
     'app' => [
         'contracts' => [
-            'funding'        => Contracts\Funding::class,
-            'module_funding' => Contracts\ModuleFunding::class,
         ],
     ],
     'commands'  => [
@@ -22,7 +20,6 @@ return [
     ],
     'database' => [
         'models' => [
-            'Funding' => ModuleFundingModels\Funding\Funding::class
         ]
     ]
 ];
