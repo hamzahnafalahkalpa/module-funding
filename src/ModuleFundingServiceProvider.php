@@ -19,12 +19,7 @@ class ModuleFundingServiceProvider extends BaseServiceProvider
         $this->registerMainClass(ModuleFunding::class)
             ->registerCommandService(Providers\CommandServiceProvider::class)
             ->registers([
-                '*',
-                'Services' => function () {
-                    $this->binds([
-                        Contracts\ModuleFunding::class => ModuleFunding::class
-                    ]);
-                }
+                '*'
             ]);
     }
 
