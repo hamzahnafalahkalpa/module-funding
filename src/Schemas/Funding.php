@@ -9,7 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Hanafalah\ModuleFunding\{
     Supports\BaseModuleFunding
 };
-use Hanafalah\ModuleFunding\Contracts\Funding as ContractsFunding;
+use Hanafalah\ModuleFunding\Contracts\Schemas\Funding as ContractsFunding;
 use Hanafalah\ModuleFunding\Data\FundingDTO;
 use Hanafalah\ModuleFunding\Resources\Funding\ViewFunding;
 
