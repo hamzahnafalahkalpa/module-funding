@@ -19,7 +19,7 @@
         }
     },
     "require": {
-        "hanafalah/laravel-support": "1.x"
+        "hanafalah/laravel-support": "dev-main"
     },
     "minimum-stability": "dev",
     "prefer-stable": false
