@@ -2,6 +2,7 @@
 
 namespace Hanafalah\ModuleFunding\Schemas;
 
+use Hanafalah\LaravelSupport\Contracts\Data\PaginateData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -10,19 +11,12 @@ use Hanafalah\ModuleFunding\{
     Supports\BaseModuleFunding
 };
 use Hanafalah\ModuleFunding\Contracts\Schemas\Funding as ContractsFunding;
-use Hanafalah\ModuleFunding\Data\FundingDTO;
-use Hanafalah\ModuleFunding\Resources\Funding\ViewFunding;
+use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
 
 class Funding extends BaseModuleFunding implements ContractsFunding
 {
-    protected array $__guard   = ['id'];
-    protected array $__add     = ['name'];
     protected string $__entity = 'Funding';
     public static $funding_model;
-
-    protected array $__resources = [
-        'view' => ViewFunding::class
-    ];
 
     protected array $__cache = [
         'index' => [
@@ -32,116 +26,96 @@ class Funding extends BaseModuleFunding implements ContractsFunding
         ]
     ];
 
-    public function addOrChange(?array $attributes = []): self
-    {
-        $this->updateOrCreate($attributes);
-        return $this;
+    protected function viewUsingRelation(): array{
+        return [];
     }
 
-    public function getFunding(): mixed
-    {
+    protected function showUsingRelation(): array{
+        return [];
+    }
+
+    public function getFunding(): mixed{
         return static::$funding_model;
     }
 
-    public function prepareShowFunding(?Model $model = null, ?array $attributes = null): ?Model
-    {
-        $this->booting();
-
+    public function prepareShowFunding(?Model $model = null, ?array $attributes = null): ?Model{
         $attributes ??= request()->all();
         $model      ??= $this->getFunding();
         if (!isset($model)) {
             $id = $attributes['id'] ?? null;
-            if (!request()->has('id')) throw new \Exception('No id provided', 422);
-            if (!isset($model)) $model = $this->funding()->find($id);
+            if (!$id) throw new \Exception('No id provided', 422);
+            $model = $this->funding()->with($this->showUsingRelation())->findOrFail($id);
+        }else{
+            $model->load($this->showUsingRelation());
         }
         return static::$funding_model = $model;
     }
 
-    public function showFunding(?Model $model = null): array
-    {
-        return $this->transforming($this->__resources['view'], $this->prepareShowFunding($model));
-    }
-
-    protected function createFunding(FundingDTO $funding): Model
-    {
-        return $this->FundingModel()->updateOrCreate([
-            'id' => $funding->id ?? null
-        ], ['name' => $funding->name]);
-    }
-
-    protected function storeFundingMapper(array $attributes): FundingDTO
-    {
-        //        if (!isset($attributes['id'])) throw new \Exception('No id provided',422);
-        if (!isset($attributes['name'])) throw new \Exception('No name provided', 422);
-        return new FundingDTO($attributes['id'] ?? null, $attributes['name'] ?? null);
-    }
-
-    public function prepareStoreFunding(?array $attributes = null): Model
-    {
-        $attributes ??= request()->all();
-
-        static::$funding_model = $funding = $this->createFunding($this->storeFundingMapper($attributes));
-        $this->flushTagsFrom('index');
-        return $funding;
-    }
-
-    public function storeFunding(): array
-    {
-        return $this->transaction(function () {
-            return $this->showFunding($this->prepareStoreFunding());
+    public function showFunding(?Model $model = null): array{
+        return $this->showEntityResource(function() use ($model){
+            return $this->prepareShowFunding($model);
         });
     }
 
-    public function prepareViewFundingList(): Collection
-    {
+    public function prepareStoreFunding(FundingData $funding_dto): Model{
+        $funding = $this->FundingModel()->updateOrCreate([
+                        'id' => $funding_dto->id ?? null
+                    ], [
+                        'name' => $funding_dto->name
+                    ]);
+        static::$funding_model = $funding;
+        return $funding;
+    }
+
+    public function storeFunding(?FundingData $funding_dto = null): array{
+        return $this->transaction(function() use ($funding_dto){
+            return $this->showFunding($this->prepareStoreFunding($funding_dto ?? $this->requestDTO(FundingData::class)));
+        });
+    }
+
+    public function prepareViewFundingList(): Collection{
         return static::$funding_model = $this->cacheWhen(!$this->isSearch(), $this->__cache['index'], function () {
             return $this->funding()->orderBy('name', 'asc')->get();
         });
     }
 
-    public function viewFundingList(): array
-    {
-        return $this->transforming($this->__resources['view'], fn() => $this->prepareViewFundingList());
-    }
-
-    public function prepareViewFundingPaginate(int $perPage = 50, array $columns = ['*'], string $pageName = 'page', ?int $page = null, ?int $total = null): LengthAwarePaginator
-    {
-        $paginate_options = compact('perPage', 'columns', 'pageName', 'page', 'total');
-
-        $this->addSuffixCache($this->__cache['index'], "funding-index", 'paginate');
-        return $this->cacheWhen(!$this->isSearch(), $this->__cache['index'], function () use ($paginate_options) {
-            return $this->funding()->orderBy('name', 'asc')->paginate(
-                ...$this->arrayValues($paginate_options)
-            );
+    public function viewFundingList(): array{
+        return $this->viewEntityResource(function() {
+            return $this->prepareViewFundingList();
         });
     }
 
-    public function viewFundingPaginate(int $perPage = 50, array $columns = ['*'], string $pageName = 'page', ?int $page = null, ?int $total = null): array
-    {
-        $paginate_options = compact('perPage', 'columns', 'pageName', 'page', 'total');
-        return $this->transforming($this->__resources['view'], function () use ($paginate_options) {
-            return $this->prepareViewFundingPaginate(...$this->arrayValues($paginate_options));
+    public function prepareViewFundingPaginate(PaginateData $paginate_dto): LengthAwarePaginator{
+        $this->addSuffixCache($this->__cache['index'], "funding-index", 'paginate');
+        return $this->cacheWhen(!$this->isSearch(), $this->__cache['index'], function () use ($paginate_dto) {
+            return $this->funding()->paginate(...$paginate_dto->toArray())
+                        ->appends(request()->all());
+        });
+    }
+
+    public function viewFundingPaginate(?PaginateData $paginate_dto = null): array{
+        return $this->viewEntityResource(function() use ($paginate_dto){
+            return $this->prepareViewFundingPaginate($paginate_dto ?? $this->requestDTO(PaginateData::class));
         }, ['rows_per_page' => [50]]);
     }
 
-    public function prepareRemoveFunding(): bool
-    {
-        $id = request()->id;
-        if (!request()->has('id')) throw new \Exception('No id provided', 422);
-        $this->funding()->find($id)->delete();
+    public function prepareDeleteFunding(? array $attributes = null): bool{
+        $attributes ??= \request()->all();
+        if (!$attributes['id']) throw new \Exception('No id provided', 422);
+        $result = $this->funding()->find($attributes['id'])->delete();
         $this->flushTagsFrom('index');
-        return true;
+        return $result;
     }
 
-    public function removeFundingById(): bool
-    {
+    public function deleteFunding(): bool{
         return $this->transaction(function () {
-            return $this->prepareRemoveFunding();
+            return $this->prepareDeleteFunding();
         });
     }
 
-    public function funding(mixed $conditionals = null): Builder
-    {
-        return $this->FundingModel()->withParameters()->conditionals($conditionals)->orderBy('name', 'asc');
+    public function funding(mixed $conditionals = null): Builder{
+        $this->booting();
+        return $this->FundingModel()->withParameters()
+                    ->conditionals($this->mergeCondition($conditionals ?? []))->orderBy('name', 'asc');
     }
 }
