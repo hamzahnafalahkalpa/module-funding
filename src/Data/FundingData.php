@@ -10,17 +10,15 @@ use Spatie\LaravelData\Attributes\MapName;
 
 class FundingData extends Data implements DataFundingData
 {
-    public function __construct(
-        #[MapInputName('id')]
-        #[MapName('id')]
-        public mixed $id = null,
+    #[MapInputName('id')]
+    #[MapName('id')]
+    public mixed $id = null;
 
-        #[MapInputName('name')]
-        #[MapName('name')]
-        public string $name,
+    #[MapInputName('name')]
+    #[MapName('name')]
+    public string $name;
 
-        #[MapInputName('status')]
-        #[MapName('status')]
-        public ?string $status = Status::ACTIVE->value
-    ) {}
+    #[MapInputName('status')]
+    #[MapName('status')]
+    public ?string $status = Status::ACTIVE->value;
 }
