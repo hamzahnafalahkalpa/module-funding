@@ -10,19 +10,22 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
 
+/**
+ * @see \Hanafalah\ModuleFunding\Schemas\Funding
+ * @method array viewFundingList()
+ * @method bool deleteFunding()
+ * @method bool prepareDeleteFunding(? array $attributes = null)
+ * @method mixed getFunding()
+ * @method ?Model prepareShowFunding(?Model $model = null, ?array $attributes = null)
+ * @method array showFunding(?Model $model = null)
+ * @method Collection prepareViewFundingList()
+ * @method LengthAwarePaginator prepareViewFundingPaginate(PaginateData $paginate_dto)
+ * @method array viewFundingPaginate(?PaginateData $paginate_dto = null)
+ */
+
 interface Funding extends DataManagement
 {
-    public function getFunding(): mixed;
-    public function prepareShowFunding(?Model $model = null, ?array $attributes = null): ?Model;
-    public function showFunding(?Model $model = null): array;
     public function prepareStoreFunding(FundingData $funding_dto): Model;
     public function storeFunding(?FundingData $funding_dto = null): array;
-    public function prepareViewFundingList(): Collection;
-    public function viewFundingList(): array;
-    public function prepareViewFundingPaginate(PaginateData $paginate_dto): LengthAwarePaginator;
-    public function viewFundingPaginate(?PaginateData $paginate_dto = null): array;
-    public function prepareDeleteFunding(? array $attributes = null): bool;
-    public function deleteFunding(): bool;
     public function funding(mixed $conditionals = null): Builder;
-    
 }
