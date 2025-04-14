@@ -12,13 +12,13 @@ use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
 
 /**
  * @see \Hanafalah\ModuleFunding\Schemas\Funding
- * @method array viewFundingList()
  * @method bool deleteFunding()
  * @method bool prepareDeleteFunding(? array $attributes = null)
  * @method mixed getFunding()
  * @method ?Model prepareShowFunding(?Model $model = null, ?array $attributes = null)
  * @method array showFunding(?Model $model = null)
  * @method Collection prepareViewFundingList()
+ * @method array viewFundingList()
  * @method LengthAwarePaginator prepareViewFundingPaginate(PaginateData $paginate_dto)
  * @method array viewFundingPaginate(?PaginateData $paginate_dto = null)
  */
