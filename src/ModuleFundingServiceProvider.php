@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Hanafalah\ModuleFunding;
 
 use Hanafalah\LaravelSupport\Providers\BaseServiceProvider;
-use Hanafalah\ModuleFunding\Schemas\Funding;
 
 class ModuleFundingServiceProvider extends BaseServiceProvider
 {
