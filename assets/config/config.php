@@ -7,6 +7,7 @@ use Hanafalah\ModuleFunding\{
 };
 
 return [
+    'namespace' => 'Hanafalah\ModuleFunding',
     'app' => [
         'contracts' => [
         ],
@@ -17,7 +18,11 @@ return [
     'libs' => [
         'model' => 'Models',
         'contract' => 'Contracts',
-        'schema' => 'Schemas'
+        'schema' => 'Schemas',
+        'database' => 'Database',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'migration' => '../assets/database/migrations',
     ],
     'database' => [
         'models' => [
