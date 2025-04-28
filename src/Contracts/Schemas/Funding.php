@@ -21,11 +21,11 @@ use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
  * @method array viewFundingList()
  * @method LengthAwarePaginator prepareViewFundingPaginate(PaginateData $paginate_dto)
  * @method array viewFundingPaginate(?PaginateData $paginate_dto = null)
+ * @method array storeFunding(?FundingData $funding_dto = null)
+ * @method Builder funding(mixed $conditionals = null)
  */
 
 interface Funding extends DataManagement
 {
     public function prepareStoreFunding(FundingData $funding_dto): Model;
-    public function storeFunding(?FundingData $funding_dto = null): array;
-    public function funding(mixed $conditionals = null): Builder;
 }

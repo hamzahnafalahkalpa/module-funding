@@ -2,7 +2,6 @@
 
 namespace Hanafalah\ModuleFunding\Schemas;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Hanafalah\ModuleFunding\{
     Supports\BaseModuleFunding
@@ -14,6 +13,7 @@ class Funding extends BaseModuleFunding implements ContractsFunding
 {
     protected string $__entity = 'Funding';
     public static $funding_model;
+    protected mixed $__order_by_created_at = false; //asc, desc, false
 
     protected array $__cache = [
         'index' => [
@@ -31,18 +31,5 @@ class Funding extends BaseModuleFunding implements ContractsFunding
                     ]);
         static::$funding_model = $funding;
         return $funding;
-    }
-
-    public function storeFunding(?FundingData $funding_dto = null): array{
-        return $this->transaction(function() use ($funding_dto){
-            return $this->showFunding($this->prepareStoreFunding($funding_dto ?? $this->requestDTO(FundingData::class)));
-        });
-    }
-
-    public function funding(mixed $conditionals = null): Builder{
-        $this->booting();
-        return $this->FundingModel()->withParameters()
-                    ->conditionals($this->mergeCondition($conditionals ?? []))
-                    ->orderBy('name', 'asc');
     }
 }
