@@ -19,6 +19,14 @@ class Funding extends BaseModel
         'name' => 'string'
     ];
 
+    public function viewUsingRelation(): array{
+        return [];
+    }
+
+    public function showUsingRelation(): array{
+        return [];
+    }
+
     public function getViewResource()
     {
         return ViewFunding::class;
