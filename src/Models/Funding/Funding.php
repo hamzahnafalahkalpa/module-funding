@@ -26,14 +26,6 @@ class Funding extends BaseModel
     public function showUsingRelation(): array{
         return [];
     }
-
-    public function getViewResource()
-    {
-        return ViewFunding::class;
-    }
-
-    public function getShowResource()
-    {
-        return ShowFunding::class;
-    }
+    public function getViewResource(){return ViewFunding::class;}
+    public function getShowResource(){return ShowFunding::class;}
 }
