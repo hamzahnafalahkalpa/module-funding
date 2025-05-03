@@ -7,17 +7,23 @@ use Hanafalah\ModuleFunding\{
 };
 
 return [
+    'namespace' => 'Hanafalah\\ModuleFunding',
     'app' => [
         'contracts' => [
-        ],
-    ],
-    'commands'  => [
-        ModuleFundingCommands\InstallMakeCommand::class
+            //ADD YOUR CONTRACTS HERE
+        ]
     ],
     'libs' => [
         'model' => 'Models',
         'contract' => 'Contracts',
-        'schema' => 'Schemas'
+        'schema' => 'Schemas',
+        'database' => 'Database',
+        'data' => 'Data',
+        'resource' => 'Resources',
+        'migration' => '../assets/database/migrations'
+    ],
+    'commands'  => [
+        ModuleFundingCommands\InstallMakeCommand::class
     ],
     'database' => [
         'models' => [
