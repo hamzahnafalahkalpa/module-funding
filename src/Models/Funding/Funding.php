@@ -19,13 +19,13 @@ class Funding extends BaseModel
         'name' => 'string'
     ];
 
-    public function toViewApi()
-    {
-        return new ViewFunding($this);
+    public function viewUsingRelation(): array{
+        return [];
     }
 
-    public function toShowApi()
-    {
-        return new ShowFunding($this);
+    public function showUsingRelation(): array{
+        return [];
     }
+    public function getViewResource(){return ViewFunding::class;}
+    public function getShowResource(){return ShowFunding::class;}
 }
