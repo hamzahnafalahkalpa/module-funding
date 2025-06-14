@@ -13,6 +13,7 @@ use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
 /**
  * @see \Hanafalah\ModuleFunding\Schemas\Funding
  * @method self conditionals(mixed $conditionals)
+ * @method mixed export(string $type)
  * @method bool deleteFunding()
  * @method bool prepareDeleteFunding(? array $attributes = null)
  * @method mixed getFunding()
