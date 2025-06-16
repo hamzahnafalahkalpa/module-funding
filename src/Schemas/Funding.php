@@ -19,7 +19,7 @@ class Funding extends BaseModuleFunding implements ContractsFunding
         'index' => [
             'name'     => 'funding',
             'tags'     => ['funding', 'funding-index'],
-            'forever'  => true
+            'duration' => 24 * 60
         ]
     ];
 

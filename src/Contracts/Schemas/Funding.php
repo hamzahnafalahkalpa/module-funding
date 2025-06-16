@@ -26,7 +26,6 @@ use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
  * @method array storeFunding(?FundingData $funding_dto = null)
  * @method Builder funding(mixed $conditionals = null)
  */
-
 interface Funding extends DataManagement
 {
     public function prepareStoreFunding(FundingData $funding_dto): Model;
