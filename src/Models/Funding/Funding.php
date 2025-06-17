@@ -2,30 +2,16 @@
 
 namespace Hanafalah\ModuleFunding\Models\Funding;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Hanafalah\LaravelHasProps\Concerns\HasProps;
-use Hanafalah\LaravelSupport\Models\BaseModel;
 use Hanafalah\ModuleFunding\Resources\Funding\{
     ViewFunding,
     ShowFunding
 };
+use Hanafalah\ModulePayment\Models\Price\FinanceStuff;
 
-class Funding extends BaseModel
+class Funding extends FinanceStuff
 {
-    use HasProps, SoftDeletes;
+    protected $table = 'finance_stuffs';
 
-    public $list = ['id', 'name', 'props'];
-    protected $casts = [
-        'name' => 'string'
-    ];
-
-    public function viewUsingRelation(): array{
-        return [];
-    }
-
-    public function showUsingRelation(): array{
-        return [];
-    }
     public function getViewResource(){return ViewFunding::class;}
     public function getShowResource(){return ShowFunding::class;}
 }

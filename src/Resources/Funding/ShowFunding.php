@@ -2,7 +2,7 @@
 
 namespace Hanafalah\ModuleFunding\Resources\Funding;
 
-use Hanafalah\LaravelSupport\Resources\ApiResource;
+use Hanafalah\ModulePayment\Resources\FinanceStuff\ShowFinanceStuff;
 
 class ShowFunding extends ViewFunding
 {
@@ -15,8 +15,8 @@ class ShowFunding extends ViewFunding
   public function toArray(\Illuminate\Http\Request $request): array
   {
     $arr = [];
-    $arr = $this->mergeArray(parent::toArray($request), $arr);
-
+    $show = $this->resolveNow(new ShowFinanceStuff($this));
+    $arr = $this->mergeArray(parent::toArray($request), $show, $arr);
     return $arr;
   }
 }
