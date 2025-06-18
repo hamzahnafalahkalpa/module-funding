@@ -12,6 +12,16 @@ class Funding extends FinanceStuff
 {
     protected $table = 'finance_stuffs';
 
+    protected static function booted(): void{
+        parent::booted();
+        static::addGlobalScope('flag',function($query){
+            $query->flagIn('Funding');
+        });
+        static::creating(function($query){
+            $query->flag = 'Funding';
+        });
+    }
+
     public function getViewResource(){return ViewFunding::class;}
     public function getShowResource(){return ShowFunding::class;}
 }
