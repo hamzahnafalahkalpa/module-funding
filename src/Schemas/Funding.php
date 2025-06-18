@@ -3,17 +3,17 @@
 namespace Hanafalah\ModuleFunding\Schemas;
 
 use Illuminate\Database\Eloquent\Model;
-use Hanafalah\ModuleFunding\{
-    Supports\BaseModuleFunding
-};
 use Hanafalah\ModuleFunding\Contracts\Schemas\Funding as ContractsFunding;
 use Hanafalah\ModuleFunding\Contracts\Data\FundingData;
+use Hanafalah\ModulePayment\Schemas\FinanceStuff;
+use Illuminate\Database\Eloquent\Builder;
 
-class Funding extends BaseModuleFunding implements ContractsFunding
+class Funding extends FinanceStuff implements ContractsFunding
 {
     protected string $__entity = 'Funding';
     public static $funding_model;
     protected mixed $__order_by_created_at = false; //asc, desc, false
+    protected $__config_name = 'module-funding';
 
     protected array $__cache = [
         'index' => [
@@ -24,12 +24,12 @@ class Funding extends BaseModuleFunding implements ContractsFunding
     ];
 
     public function prepareStoreFunding(FundingData $funding_dto): Model{
-        $funding = $this->FundingModel()->updateOrCreate([
-                        'id' => $funding_dto->id ?? null
-                    ], [
-                        'name' => $funding_dto->name
-                    ]);
+        $funding = parent::prepareStoreFinanceStuff($funding_dto);
         static::$funding_model = $funding;
         return $funding;
+    }
+
+    public function funding(mixed $conditionals = null): Builder{
+        return parent::financeStuff($conditionals);
     }
 }
