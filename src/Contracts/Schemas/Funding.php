@@ -12,6 +12,7 @@ use Hanafalah\ModulePayment\Contracts\Schemas\FinanceStuff;
 
 /**
  * @see \Hanafalah\ModuleFunding\Schemas\Funding
+ * @method self setParamLogic(string $logic, bool $search_value = false, ?array $optionals = [])
  * @method self conditionals(mixed $conditionals)
  * @method mixed export(string $type)
  * @method bool deleteFunding()
