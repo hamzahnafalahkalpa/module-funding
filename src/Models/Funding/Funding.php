@@ -10,7 +10,7 @@ use Hanafalah\ModulePayment\Models\Price\FinanceStuff;
 
 class Funding extends FinanceStuff
 {
-    protected $table = 'finance_stuffs';
+    protected $table = 'unicodes';
 
     protected static function booted(): void{
         parent::booted();

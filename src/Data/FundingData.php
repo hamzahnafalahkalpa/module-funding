@@ -8,6 +8,7 @@ use Hanafalah\ModulePayment\Data\FinanceStuffData;
 class FundingData extends FinanceStuffData implements DataFundingData
 {
     public static function before(array &$attributes){
-        $attributes['flag'] = 'Funding';
+        $attributes['flag'] ??= 'Funding';
+        parent::before($attributes);
     }
 }
