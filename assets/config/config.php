@@ -7,7 +7,7 @@ use Hanafalah\ModuleFunding\{
 };
 
 return [
-    'namespace' => 'Hanafalah\\ModuleFunding',
+    'namespace' => 'Hanafalah\ModuleFunding',
     'app' => [
         'contracts' => [
             //ADD YOUR CONTRACTS HERE

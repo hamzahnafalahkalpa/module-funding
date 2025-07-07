@@ -2,9 +2,9 @@
 
 namespace Hanafalah\ModuleFunding\Resources\Funding;
 
-use Hanafalah\LaravelSupport\Resources\ApiResource;
+use Hanafalah\ModulePayment\Resources\FinanceStuff\ViewFinanceStuff;
 
-class ViewFunding extends ApiResource
+class ViewFunding extends ViewFinanceStuff
 {
   /**
    * Transform the resource into an array.
@@ -15,12 +15,8 @@ class ViewFunding extends ApiResource
   public function toArray(\Illuminate\Http\Request $request): array
   {
     $arr = [
-      'id'         => $this->id,
-      'name'       => $this->name,
-      'created_at' => $this->created_at,
-      'updated_at' => $this->updated_at
     ];
-
+    $arr = $this->mergeArray(parent::toArray($request),$arr);
     return $arr;
   }
 }

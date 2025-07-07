@@ -2,4 +2,6 @@
 
 namespace Hanafalah\ModuleFunding\Contracts\Data;
 
-interface FundingData{}
+use Hanafalah\ModulePayment\Contracts\Data\FinanceStuffData;
+
+interface FundingData extends FinanceStuffData{}

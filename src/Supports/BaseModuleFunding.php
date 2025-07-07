@@ -2,11 +2,12 @@
 
 namespace Hanafalah\ModuleFunding\Supports;
 
+use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 use Hanafalah\LaravelSupport\Supports\PackageManagement;
 
-class BaseModuleFunding extends PackageManagement
+class BaseModuleFunding extends PackageManagement implements DataManagement
 {
-    /** @var array */
+    protected $__config_name = 'module-funding';
     protected $__module_funding_config = [];
 
     /**
@@ -18,6 +19,6 @@ class BaseModuleFunding extends PackageManagement
      */
     public function __construct()
     {
-        $this->setConfig('module-funding', $this->__module_funding_config);
+        $this->setConfig($this->__config_name, $this->__module_funding_config);
     }
 }
