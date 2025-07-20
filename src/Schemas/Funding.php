@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Funding extends FinanceStuff implements ContractsFunding
 {
     protected string $__entity = 'Funding';
-    public static $funding_model;
+    public $funding_model;
     protected mixed $__order_by_created_at = false; //asc, desc, false
     protected $__config_name = 'module-funding';
 
