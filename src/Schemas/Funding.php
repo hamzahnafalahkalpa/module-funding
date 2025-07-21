@@ -25,8 +25,7 @@ class Funding extends FinanceStuff implements ContractsFunding
 
     public function prepareStoreFunding(FundingData $funding_dto): Model{
         $funding = parent::prepareStoreFinanceStuff($funding_dto);
-        static::$funding_model = $funding;
-        return $funding;
+        return $this->funding_model = $funding;
     }
 
     public function funding(mixed $conditionals = null): Builder{
